@@ -11,3 +11,4 @@ class UserMailer < ApplicationMailer
     mail to: user.email, subject: "Password reset"
   end
 end
+
