@@ -15,7 +15,13 @@ class UserTest < ActiveSupport::TestCase
     @user.name = ""
     assert_not @user.valid?
   end
-
+test "associated microposts should be destroyed" do
+    @user.save
+    @user.microposts.create!(content: "Lorem ipsum")
+    assert_difference 'Micropost.count', -1 do
+      @user.destroy
+    end
+  end
   test "email should be present" do
     @user.email = "     "
     assert_not @user.valid?
